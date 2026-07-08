@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RESELLER-209 · Streetwear · Mayoreo</title>
+<meta name="description" content="reseller-209 — Streetwear, perfumes y más. Venta al menudeo y MAYOREO. Surtimos tu negocio de ropa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --negro:#0a0a0a;
+    --negro2:#141414;
+    --oro:#e3b23c;
+    --oro2:#f6d47a;
+    --verde:#37b34a;
+    --blanco:#ffffff;
+    --gris:#a9a9a9;
+    --ig:#E1306C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--negro);color:var(--blanco);font-family:'Montserrat',sans-serif;overflow-x:hidden;}
+  h1,h2,h3,.oswald{font-family:'Oswald',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+
+  /* NAV */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 16px;background:rgba(10,10,10,.85);
+    backdrop-filter:blur(10px);border-bottom:1px solid rgba(227,178,60,.25);
+  }
+  .nav .brand{font-family:'Oswald';font-weight:700;font-size:19px;letter-spacing:1px;}
+  .nav .brand span{color:var(--oro);}
+  .lang{display:flex;border:1px solid rgba(227,178,60,.5);border-radius:30px;overflow:hidden;}
+  .lang button{
+    background:transparent;color:var(--gris);border:none;font-family:'Oswald';
+    font-weight:600;font-size:12px;padding:6px 12px;cursor:pointer;letter-spacing:1px;
+  }
+  .lang button.active{background:linear-gradient(135deg,var(--oro),var(--oro2));color:#1a1400;}
+
+  /* HERO */
+  .hero{position:relative;padding:34px 20px 30px;text-align:center;
+    background:radial-gradient(circle at 50% 20%, rgba(55,179,74,.18), transparent 60%);overflow:hidden;}
+  .hero .logo{width:150px;margin:0 auto 8px;filter:drop-shadow(0 0 22px rgba(55,179,74,.55));}
+  .hero h1{font-weight:700;font-size:42px;line-height:.95;letter-spacing:1px;}
+  .hero h1 span{color:var(--oro);}
+  .hero .tag{margin-top:10px;font-size:10px;letter-spacing:4px;color:var(--gris);text-transform:uppercase;font-weight:600;}
+  .hero .cta{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:13px 20px;border-radius:40px;
+    font-weight:700;font-size:13px;letter-spacing:.5px;cursor:pointer;border:none;transition:transform .15s;}
+  .btn:active{transform:scale(.96);}
+  .btn-oro{background:linear-gradient(135deg,var(--oro),var(--oro2));color:#1a1400;}
+  .btn-ig{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);color:#fff;}
+
+  /* MAYOREO */
+  .mayoreo{margin:6px 14px 0;background:linear-gradient(135deg,#1c1600,#0f0f0f);
+    border:1px solid var(--oro);border-radius:18px;padding:20px 18px;text-align:center;position:relative;overflow:hidden;}
+  .mayoreo::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0%, rgba(227,178,60,.18), transparent 55%);}
+  .mayoreo .badge{display:inline-block;background:var(--verde);color:#04310f;font-family:'Oswald';
+    font-weight:700;font-size:11px;letter-spacing:2px;padding:5px 14px;border-radius:30px;margin-bottom:10px;}
+  .mayoreo h2{font-size:26px;font-weight:700;letter-spacing:.5px;position:relative;}
+  .mayoreo h2 span{color:var(--oro);}
+  .mayoreo p{font-size:13px;color:var(--gris);margin-top:8px;line-height:1.5;position:relative;}
+  .mayoreo .btn{margin-top:16px;position:relative;}
+
+  /* SECCIONES */
+  .sec-title{text-align:center;padding:32px 20px 4px;}
+  .sec-title h2{font-size:28px;font-weight:700;letter-spacing:.5px;}
+  .sec-title h2 span{color:var(--oro);}
+  .sec-title p{font-size:12px;color:var(--gris);margin-top:5px;letter-spacing:1px;text-transform:uppercase;}
+
+  /* FILTROS */
+  .filtros{display:flex;gap:8px;overflow-x:auto;padding:16px 14px 6px;scrollbar-width:none;-ms-overflow-style:none;}
+  .filtros::-webkit-scrollbar{display:none;}
+  .chip{flex:none;padding:9px 16px;border-radius:30px;background:var(--negro2);
+    border:1px solid rgba(255,255,255,.12);font-family:'Oswald';font-weight:500;font-size:13px;
+    letter-spacing:.8px;color:var(--gris);cursor:pointer;white-space:nowrap;transition:.2s;text-transform:uppercase;}
+  .chip.active{background:linear-gradient(135deg,var(--oro),var(--oro2));color:#1a1400;border-color:transparent;font-weight:700;}
+
+  /* GRID */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:14px;}
+  .card{background:var(--negro2);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.07);
+    display:flex;flex-direction:column;animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .card .ph{position:relative;aspect-ratio:1/1;background:#000;cursor:pointer;overflow:hidden;}
+  .card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .card .ph:active img{transform:scale(1.05);}
+  .card .catlabel{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.65);color:var(--oro);
+    font-family:'Oswald';font-size:9px;font-weight:600;letter-spacing:1px;padding:3px 8px;
+    border-radius:20px;text-transform:uppercase;backdrop-filter:blur(4px);}
+  .card .info{padding:11px 11px 13px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card .name{font-family:'Oswald';font-weight:600;font-size:14px;line-height:1.15;}
+  .card .sizes{font-size:10.5px;color:var(--gris);line-height:1.3;}
+  .card .sizes b{color:var(--oro);font-weight:600;}
+  .card .ask{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:6px;
+    background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);color:#fff;font-weight:700;font-size:11.5px;
+    padding:9px;border-radius:10px;letter-spacing:.3px;}
+
+  /* LIGHTBOX */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:20px;}
+  .lb.open{display:flex;}
+  .lb img{max-width:100%;max-height:82vh;border-radius:12px;}
+  .lb .x{position:absolute;top:18px;right:22px;font-size:34px;color:#fff;font-weight:300;line-height:1;}
+  .lb .lb-ask{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);}
+
+  /* CONTACTO */
+  .contacto{padding:40px 20px 30px;text-align:center;
+    background:radial-gradient(circle at 50% 100%, rgba(55,179,74,.14), transparent 60%);}
+  .contacto h2{font-size:26px;font-weight:700;}
+  .contacto h2 span{color:var(--oro);}
+  .contacto .sub{font-size:13px;color:var(--gris);margin:8px 0 22px;}
+  .contacto .links{display:flex;flex-direction:column;gap:11px;max-width:400px;margin:0 auto;}
+  .lrow{display:flex;align-items:center;gap:12px;justify-content:center;background:var(--negro2);
+    border:1px solid rgba(255,255,255,.1);padding:14px;border-radius:14px;font-weight:600;font-size:14px;}
+  .lrow .ic{color:var(--oro);font-size:17px;width:22px;text-align:center;}
+  .lrow.ig{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);color:#fff;border-color:transparent;}
+  .lrow.ig .ic{color:#fff;}
+  .pair{display:flex;gap:8px;}
+  .pair .lrow{flex:1;font-size:13px;padding:13px 8px;}
+
+  footer{text-align:center;padding:26px 20px 100px;color:#555;font-size:11px;letter-spacing:1px;}
+  footer b{color:var(--oro);}
+
+  /* FAB */
+  .fab{position:fixed;bottom:18px;right:18px;z-index:60;width:60px;height:60px;border-radius:50%;
+    background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);color:#fff;display:flex;align-items:center;
+    justify-content:center;box-shadow:0 8px 24px rgba(221,42,123,.45);font-size:28px;animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(221,42,123,.5);}70%{box-shadow:0 0 0 16px rgba(221,42,123,0);}100%{box-shadow:0 0 0 0 rgba(221,42,123,0);}}
+
+  @media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr);max-width:900px;margin:0 auto;}.hero h1{font-size:56px;}}
+</style>
+</head>
+<body>
+
+  <div class="nav">
+    <div class="brand">RESELLER<span>-209</span></div>
+    <div class="lang">
+      <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <img class="logo" src="Logore.PNG" alt="reseller-209">
+    <h1>RESELLER<span>-209</span></h1>
+    <div class="tag">Streetwear · Fragrances · Kicks</div>
+    <div class="cta">
+      <a class="btn btn-oro" href="#catalogo" data-t="heroCatalog">Ver catálogo</a>
+      <a class="btn btn-ig" href="https://ig.me/m/reseller_209" target="_blank" data-t="heroWholesale">Comprar al mayoreo</a>
+    </div>
+  </header>
+
+  <section class="mayoreo">
+    <span class="badge" data-t="mayBadge">MAYOREO</span>
+    <h2 data-t="mayTitle">Surtimos tu <span>negocio de ropa</span></h2>
+    <p data-t="mayText">Todo el catálogo disponible a precio de mayoreo. Ropa, tenis, sandalias y perfumes de marca — surtimos a revendedores y tiendas. Escríbenos por DM y arma tu pedido.</p>
+    <a class="btn btn-ig" href="https://ig.me/m/reseller_209" target="_blank" data-t="mayBtn">📩 Cotizar por DM</a>
+  </section>
+
+  <div id="catalogo" class="sec-title">
+    <h2 data-t="catTitle">Nuestro <span>Catálogo</span></h2>
+    <p data-t="catSub">Toca una foto para verla en grande</p>
+  </div>
+
+  <div class="filtros" id="filtros"></div>
+  <div class="grid" id="grid"></div>
+
+  <section class="contacto" id="contacto">
+    <h2 data-t="cTitle">Haz tu <span>pedido</span></h2>
+    <p class="sub">Juan Villanueva · reseller-209</p>
+    <div class="links">
+      <a class="lrow ig" href="https://ig.me/m/reseller_209" target="_blank"><span class="ic">📩</span> <span data-t="cIgDm">DM Instagram · @reseller_209</span></a>
+      <div class="pair">
+        <a class="lrow" href="tel:+12093668672"><span class="ic">📞</span> <span data-t="cCall">Llamar</span> · 209-366-8672</a>
+        <a class="lrow" href="sms:+12093668672"><span class="ic">💬</span> <span data-t="cText">Texto</span></a>
+      </div>
+      <div class="pair">
+        <a class="lrow" href="tel:+12094709194"><span class="ic">📞</span> <span data-t="cCall2">Llamar</span> · 209-470-9194</a>
+        <a class="lrow" href="sms:+12094709194"><span class="ic">💬</span> <span data-t="cText2">Texto</span></a>
+      </div>
+      <a class="lrow" href="https://www.tiktok.com/@juan252863" target="_blank"><span class="ic">♪</span> TikTok · @juan252863</a>
+    </div>
+  </section>
+
+  <footer>
+    RESELLER<b>-209</b> · Streetwear &amp; Fragrances<br><span data-t="footer">Menudeo &amp; Mayoreo</span>
+  </footer>
+
+  <a class="fab" href="https://ig.me/m/reseller_209" target="_blank">📩</a>
+
+  <div class="lb" id="lb">
+    <span class="x" onclick="closeLb()">&times;</span>
+    <img id="lbimg" src="" alt="">
+    <a class="btn btn-ig lb-ask" id="lbask" href="#" target="_blank">📩 <span data-t="lbAsk">Preguntar por DM</span></a>
+  </div>
+
+<script>
+  const IG_DM = "https://ig.me/m/reseller_209";
+
+  // Catalogo (datos reales de las fotos). cat = clave interna.
+  const productos = [
+    {img:"IMG_1461.JPG", cat:"tshirts", name:"Hellstar Tee", sizes:"S · M · L · XL"},
+    {img:"IMG_1462.JPG", cat:"tshirts", name:"Hellstar Rhinestone Tee", sizes:"S · M · L · XL"},
+    {img:"IMG_1463.JPG", cat:"tshirts", name:"Hellstar Tees (colores)", sizes:"S · M · L · XL"},
+    {img:"IMG_1458.JPG", cat:"tshirts", name:"BAPE Tees", sizes:"S · M · L · XL · XXL"},
+    {img:"IMG_1459.JPG", cat:"tshirts", name:"BAPE / Chrome Hearts Tees", sizes:"S · M · L · XL"},
+    {img:"IMG_1460.JPG", cat:"tshirts", name:"BAPE Camo Tees", sizes:"S · M · L · XL"},
+    {img:"IMG_2422.JPG", cat:"tshirts", name:"MCM x BAPE Tee", sizes:"ask"},
+    {img:"IMG_2494.JPG", cat:"hoodies", name:"BAPE Hello Kitty Full-Zip", sizes:"S · M · L · XL"},
+    {img:"IMG_2431.JPG", cat:"hoodies", name:"BAPE Shark Full-Zip", sizes:"S · M · L"},
+    {img:"IMG_2418.JPG", cat:"hoodies", name:"Essentials Hoodie · Stretch Limo", sizes:"S · M · L · XL"},
+    {img:"IMG_2419.JPG", cat:"hoodies", name:"Essentials Hoodie · Light Oatmeal", sizes:"S · M · L · XL"},
+    {img:"IMG_2420.JPG", cat:"hoodies", name:"Essentials Hoodie · Dark Oatmeal", sizes:"S · M · L · XL"},
+    {img:"IMG_2421.JPG", cat:"hoodies", name:"Sp5der Pink Punk (conjunto)", sizes:"ask"},
+    {img:"IMG_1653.JPG", cat:"hoodies", name:"Sp5der Pink (conjunto)", sizes:"ask"},
+    {img:"IMG_2502.JPG", cat:"hoodies", name:"Sp5der Rhinestone Hoodie", sizes:"ask"},
+    {img:"IMG_1688.JPG", cat:"jeans", name:"Amiri Jeans", sizes:"30 · 32 · 34 · 36 · 38 · 40"},
+    {img:"IMG_1685.JPG", cat:"jeans", name:"Purple Brand Jeans", sizes:"30 · 32 · 34 · 36"},
+    {img:"IMG_1686.JPG", cat:"jeans", name:"Purple / Chrome Hearts Jeans", sizes:"30 · 32 · 34 · 36 · 38"},
+    {img:"IMG_1687.JPG", cat:"jeans", name:"Purple Brand Jeans", sizes:"30 · 32 · 34 · 36 · 38"},
+    {img:"IMG_1689.JPG", cat:"jeans", name:"Purple Brand Jeans (flared)", sizes:"30 · 32 · 34 · 36 · 38"},
+    {img:"IMG_2498.JPG", cat:"pants", name:"Essentials Sweatpants (3 colores)", sizes:"S · M · L · XL"},
+    {img:"IMG_2415.JPG", cat:"pants", name:"Essentials Sweatpants · Dark Oatmeal", sizes:"S · M · L · XL"},
+    {img:"IMG_2416.JPG", cat:"pants", name:"Essentials Sweatpants · Beige", sizes:"S · M · L · XL"},
+    {img:"IMG_2417.JPG", cat:"pants", name:"Essentials Sweatpants · Light Oatmeal", sizes:"S · M · L · XL"},
+    {img:"IMG_2492.JPG", cat:"shorts", name:"BAPE Camo Shorts", sizes:"ask"},
+    {img:"IMG_2499.JPG", cat:"shorts", name:"Essentials Shorts · Grey", sizes:"XS · S · M · L · XL"},
+    {img:"IMG_2500.JPG", cat:"shorts", name:"Essentials Shorts · Light Oatmeal", sizes:"XS · S · M · L · XL"},
+    {img:"IMG_2501.JPG", cat:"shorts", name:"Essentials Shorts · Black", sizes:"XS · S · M · L · XL"},
+    {img:"IMG_1445.JPG", cat:"shoes", name:"Alexander McQueen Sneakers", sizes:"7 · 8 · 9 · 10 · 11 · 12 · 13"},
+    {img:"IMG_2496.JPG", cat:"shoes", name:"Christian Louboutin Spikes", sizes:"39 · 41 · 44 · 45"},
+    {img:"IMG_1453.JPG", cat:"sandals", name:"Yeezy Slides · Onyx", sizes:"4 · 7 · 8 · 9 · 10 · 11"},
+    {img:"IMG_1455.JPG", cat:"sandals", name:"Tory Burch Miller · Black", sizes:"7 · 8 · 9 · 10"},
+    {img:"IMG_1456.JPG", cat:"sandals", name:"Tory Burch Miller · Colores", sizes:"6 · 7 · 8 · 9 · 10"},
+    {img:"IMG_2507.JPG", cat:"perfumes", name:"Bleu de Chanel · YSL Libre · Tom Ford Lost Cherry", sizes:"ask"},
+    {img:"IMG_2503.JPG", cat:"perfumes", name:"Chanel Chance · JPG Le Male · Chanel N°5", sizes:"ask"},
+    {img:"IMG_2504.JPG", cat:"perfumes", name:"Baccarat Rouge 540 · Gucci Guilty · Valentino", sizes:"ask"},
+    {img:"IMG_2505.JPG", cat:"perfumes", name:"YSL Black Opium · Creed · Chanel N°5", sizes:"ask"},
+    {img:"IMG_2506.JPG", cat:"perfumes", name:"Coco Chanel · Armani My Way · Gucci Flora", sizes:"ask"},
+  ];
+
+  const catOrder = ["all","tshirts","hoodies","jeans","pants","shorts","shoes","sandals","perfumes"];
+
+  const T = {
+    es:{
+      heroCatalog:"Ver catálogo", heroWholesale:"Comprar al mayoreo",
+      mayBadge:"MAYOREO", mayTitle:'Surtimos tu <span>negocio de ropa</span>',
+      mayText:"Todo el catálogo disponible a precio de mayoreo. Ropa, tenis, sandalias y perfumes de marca — surtimos a revendedores y tiendas. Escríbenos por DM y arma tu pedido.",
+      mayBtn:"📩 Cotizar por DM",
+      catTitle:'Nuestro <span>Catálogo</span>', catSub:"Toca una foto para verla en grande",
+      cTitle:'Haz tu <span>pedido</span>', cIgDm:"DM Instagram · @reseller_209",
+      cCall:"Llamar", cText:"Texto", cCall2:"Llamar", cText2:"Texto",
+      footer:"Menudeo & Mayoreo", lbAsk:"Preguntar por DM",
+      sizesLabel:"Tallas:", askSizes:"Consultar", askBtn:"Preguntar por DM",
+      cats:{all:"Todo",tshirts:"Playeras",hoodies:"Hoodies",jeans:"Jeans",pants:"Pants",shorts:"Shorts",shoes:"Zapatos",sandals:"Sandalias",perfumes:"Perfumes"}
+    },
+    en:{
+      heroCatalog:"View catalog", heroWholesale:"Shop wholesale",
+      mayBadge:"WHOLESALE", mayTitle:'We supply your <span>clothing business</span>',
+      mayText:"Full catalog available at wholesale prices. Clothing, sneakers, sandals and designer fragrances — we supply resellers and stores. Message us on DM and build your order.",
+      mayBtn:"📩 Quote on DM",
+      catTitle:'Our <span>Catalog</span>', catSub:"Tap a photo to view it larger",
+      cTitle:'Place your <span>order</span>', cIgDm:"Instagram DM · @reseller_209",
+      cCall:"Call", cText:"Text", cCall2:"Call", cText2:"Text",
+      footer:"Retail & Wholesale", lbAsk:"Ask on DM",
+      sizesLabel:"Sizes:", askSizes:"Ask", askBtn:"Ask on DM",
+      cats:{all:"All",tshirts:"T-Shirts",hoodies:"Hoodies",jeans:"Jeans",pants:"Pants",shorts:"Shorts",shoes:"Shoes",sandals:"Sandals",perfumes:"Fragrances"}
+    }
+  };
+
+  let lang = "es";
+  let filtro = "all";
+  const filtrosEl = document.getElementById("filtros");
+  const gridEl = document.getElementById("grid");
+
+  function igLink(prod){
+    // Instagram DM (no permite texto pre-cargado; abre el chat directo)
+    return IG_DM;
+  }
+
+  function render(){
+    const t = T[lang];
+    // textos estaticos
+    document.querySelectorAll("[data-t]").forEach(el=>{ el.innerHTML = t[el.dataset.t]; });
+    // filtros
+    filtrosEl.innerHTML = catOrder.map(c=>
+      `<div class="chip ${c===filtro?'active':''}" onclick="setFiltro('${c}')">${t.cats[c]}</div>`
+    ).join("");
+    // grid
+    const lista = filtro==="all" ? productos : productos.filter(p=>p.cat===filtro);
+    gridEl.innerHTML = lista.map(p=>{
+      const sz = p.sizes==="ask" ? t.askSizes : p.sizes;
+      return `
+      <div class="card">
+        <div class="ph" onclick="openLb('img/${p.img}')">
+          <span class="catlabel">${t.cats[p.cat]}</span>
+          <img src="img/${p.img}" alt="${p.name}" loading="lazy">
+        </div>
+        <div class="info">
+          <div class="name">${p.name}</div>
+          <div class="sizes"><b>${t.sizesLabel}</b> ${sz}</div>
+          <a class="ask" href="${IG_DM}" target="_blank">📩 ${t.askBtn}</a>
+        </div>
+      </div>`;
+    }).join("");
+  }
+
+  function setFiltro(c){ filtro=c; render(); window.scrollTo({top:document.getElementById('catalogo').offsetTop-10,behavior:'smooth'}); }
+  function setLang(l){
+    lang=l;
+    document.getElementById("btn-es").classList.toggle("active",l==="es");
+    document.getElementById("btn-en").classList.toggle("active",l==="en");
+    document.documentElement.lang=l;
+    render();
+  }
+
+  const lb=document.getElementById("lb"), lbimg=document.getElementById("lbimg"), lbask=document.getElementById("lbask");
+  function openLb(src){ lbimg.src=src; lbask.href=IG_DM; lb.classList.add("open"); }
+  function closeLb(){ lb.classList.remove("open"); }
+  lb.addEventListener("click",e=>{ if(e.target===lb) closeLb(); });
+
+  render();
+</script>
+</body>
+</html>
